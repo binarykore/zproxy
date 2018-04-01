@@ -40,11 +40,9 @@ def conn_string(conn, data, addr):
 		http_pos = url.find("://")
 	
 		if(http_pos == 4):
-			temp = url
 			print("[*] Running on Port 80.")
 			port = 80
 		elif(http_pos == -1):
-			temp = url[(http_pos+3):]
 			print("[*] Running on Port 443.")
 			port = 443
 		proxy_server(url, port, conn, addr, data)
@@ -58,8 +56,8 @@ def proxy_server(webserver, port, conn, addr, data):
 		s.send(data)
 		while(1):
 			reply = s.recv(1024)
+			conn.send(reply)
 			if(len(reply) > 0 or len(reply) > 1):
-				conn.send(reply)
 				dar = float(len(reply))
 				dar = float(dar / 1024)
 				dar = "%.3s" % (str(dar))
