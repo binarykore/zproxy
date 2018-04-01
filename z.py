@@ -50,24 +50,28 @@ def conn_string(conn, data, addr):
 		proxy_server(url, port, conn, addr, data)
 	except Exception, e:
 		pass
-def proxy_server(webserver, port, conn, data, addr):
-	print(webserver)
+def proxy_server(webserver, port, conn, addr, data):
+	webserver = webserver.split(":")[0]
 	try:
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		s.connect((webserver, port))
 		s.send(data)
 		while(1):
-			reply = s.recv(4096)
-			if(len(reply) > 0):
+			reply = s.recv(1024)
+			if(len(reply) > 0 or len(reply) > 1):
 				conn.send(reply)
 				dar = float(len(reply))
 				dar = float(dar / 1024)
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(addr[0]),str(dar)))
+				continue
+			elif(len(reply) < 0):
+				continue
 			else:
 				break
 		s.close()
+
 		conn.close()
 	except socket.error, (value, message):
 		s.close()
