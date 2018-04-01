@@ -56,9 +56,9 @@ def proxy_server(webserver, port, x, addr, data):
 		s.send(data)
 		x.send(data)
 		while(1):
-			if(len(x.recv(256)) > 0 or len(s.recv(256)) > 0):
-				dar = float(len(conn.recv(256)))
-				dar = float(dar / 256)
+			if(len(x.recv(1024)) > 0 or len(s.recv(1024)) > 0):
+				dar = float(len(conn.recv(1024)))
+				dar = float(dar / 1024)
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(addr[0]),str(dar)))
