@@ -22,7 +22,7 @@ def start(lp):
 	while(1):
 		try:
 			conn, addr = s.accept()
-			data = conn.recv(4096)
+			data = conn.recv(1024)
 			start_new_thread(conn_string, (conn,data,addr))
 		except KeyboardInterrupt:
 			s.close()
@@ -55,10 +55,9 @@ def proxy_server(webserver, port, conn, addr, data):
 		s.connect((webserver, port))
 		s.send(data)
 		while(1):
-			reply = s.recv(1024)
-			conn.send(reply)
-			if(len(reply) > 0 or len(reply) > 1):
-				dar = float(len(reply))
+			if(len(conn.recv(1024)) > 0 or len(s.recv(1024)) > 0):
+				conn.send(reply)
+				dar = float(len(s.recv(1024)))
 				dar = float(dar / 1024)
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
