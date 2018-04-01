@@ -63,10 +63,6 @@ def proxy_server(webserver, port, x, addr, data):
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(addr[0]),str(dar)))
 				continue
-			elif(len(reply) < 0):
-				continue
-			else:
-				break
 		s.close()
 
 		conn.close()
