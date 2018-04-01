@@ -22,7 +22,7 @@ def start(lp):
 	while(1):
 		try:
 			conn, addr = s.accept()
-			data = conn.recv(1024)
+			data = conn.recv(4096)
 			start_new_thread(conn_string, (conn,data,addr))
 		except KeyboardInterrupt:
 			s.close()
