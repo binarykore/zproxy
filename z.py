@@ -42,36 +42,16 @@ def conn_string(conn, data, addr):
 		if(http_pos == 4):
 			temp = url
 			print("[*] Running on Port 80.")
+			port = 80
 		elif(http_pos == -1):
 			temp = url[(http_pos+3):]
 			print("[*] Running on Port 443.")
-
-		port_pos = temp.find(":")
-
-		webserver_pos = temp.find("/")
-
-		if(webserver_pos == -1):
-			webserver_pos = len(temp)
-			webserver = ""
-			port = -1
-			print("[*] SSL Port 443")
-		elif(webserver_pos == 5):
-			webserver_pos = len(temp)
-			print("[*] HTTP Port 80.")
-		#print(port_pos)
-		#print(webserver_pos)
-		if(webserver_pos < port_pos):
-			port = 80
-			webserver = temp[:webserver_pos]
-			print(webserver)
-		elif(webserver_pos > port_pos):
-			port = int((temp[(port_pos+1):])[:webserver_pos-port_pos-1])
-			webserver = temp[:port_pos]
-			print(webserver + " | " + port_pos)
-		proxy_server(webserver, port, conn, addr, data)
+			port = 443
+		proxy_server(url, port, conn, addr, data)
 	except Exception, e:
 		pass
 def proxy_server(webserver, port, conn, data, addr):
+	print(webserver)
 	try:
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		s.connect((webserver, port))
