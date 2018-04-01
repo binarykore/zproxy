@@ -56,14 +56,18 @@ def conn_string(conn, data, addr):
 			port = -1
 			print("[*] SSL Port 443")
 		elif(webserver_pos == 5):
+			webserver_pos = len(temp)
 			print("[*] HTTP Port 80.")
-		if(port_pos == -1 or webserver_pos < port_pos):
+		#print(port_pos)
+		#print(webserver_pos)
+		if(webserver_pos < port_pos):
 			port = 80
 			webserver = temp[:webserver_pos]
 			print(webserver)
-		else:
+		elif(webserver_pos > port_pos):
 			port = int((temp[(port_pos+1):])[:webserver_pos-port_pos-1])
 			webserver = temp[:port_pos]
+			print(webserver + " | " + port_pos)
 		proxy_server(webserver, port, conn, addr, data)
 	except Exception, e:
 		pass
