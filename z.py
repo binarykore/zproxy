@@ -48,15 +48,15 @@ def conn_string(conn, data, addr):
 		proxy_server(url, port, conn, addr, data)
 	except Exception, e:
 		pass
-def proxy_server(webserver, port, conn, addr, data):
+def proxy_server(webserver, port, x, addr, data):
 	webserver = webserver.split(":")[0]
 	try:
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		s.connect((webserver, port))
 		s.send(data)
+		x.send(data)
 		while(1):
-			if(len(conn.recv(1024)) > 0 or len(s.recv(1024)) > 0):
-				conn.send(reply)
+			if(len(x.recv(1024)) > 0 or len(s.recv(1024)) > 0):
 				dar = float(len(s.recv(1024)))
 				dar = float(dar / 1024)
 				dar = "%.3s" % (str(dar))
