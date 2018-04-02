@@ -51,7 +51,6 @@ def proxy_server(sw, port, f, g, a):
 	sp = sw.split(":")[1]
 	print("[*] Streaming Website: " + ws + ":" + sp)
 	c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	c = ssl.wrap_socket(c, keyfile=None, certfile=None, server_side=False, cert_reqs=ssl.CERT_NONE, ssl_version=ssl.PROTOCOL_SSLv23)
 	try:
 		try:
 			wh = socket.gethostbyname(ws)
@@ -60,14 +59,14 @@ def proxy_server(sw, port, f, g, a):
 			sys.exit()
 			
 		
-		c.connect((wh, sp))
+		c.connect((wh, 80))
 		
 		print("[!] Host: 200 | " + wh)
 		
 		#Carrier Return, Line Feed
 		
 		try:
-			c.send("GET / HTTP/1.1\r\nHost: " + wh + "\r\nConnection: Keep-Alive\r\n\r\n")
+			c.send("GET / HTTP/1.1\r\nHost: " + ws + "\r\nConnection: Keep-Alive\r\n\r\n")
 		except socket.error:
 			print("404: Send Error.")
     			sys.exit()
