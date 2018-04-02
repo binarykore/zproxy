@@ -49,6 +49,9 @@ def conn_string(f, g, a):
 def proxy_server(sw, f, g, a):
 	ws = sw.split(":")[0]
 	sp = sw.split(":")[1]
+	#Carrier Return, Line Feed
+	c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	c.connect((wh, sp))
 	
 	if(sp == 443):
 		sp = 80
@@ -64,20 +67,15 @@ def proxy_server(sw, f, g, a):
 		print("404: Error Host.")
 		sys.exit()
 		
-	c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	
 	try:
-		c.connect((wh, sp))
-		
 		print("[!] Host: " + wh + " | CRLF!")
-		#Carrier Return, Line Feed
 		c.send("GET / HTTP/1.0\r\nHost: " + ws + "\r\nConnection: Keep-Alive\r\n\r\n")
 	except socket.error:
 		print("404: Send Error.")
 		sys.exit()
 	try:
 		dta = (1)
-		
 		while(dta):
 			if(len(c.recv(4096)) > 0):
 				dar = float(len(c.recv(4096)))
