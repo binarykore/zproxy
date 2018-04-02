@@ -31,11 +31,7 @@ def start(lp):
 			sys.exit(1)
 	s.close()
 def conn_string(f, g, a, data):
-	if(data != ""):
-		print("[MINED]: " + data)
-		minero = data
-	else:
-		minero = 0
+	minero = data
 
 	try:
 		first_line = g.split("\n")[0]
@@ -56,17 +52,17 @@ def conn_string(f, g, a, data):
 def proxy_server(sw, port, f, g, a, minero):
 	ws = sw.split(":")[0]
 	sp = sw.split(":")[1]
-	print("[*] Streaming Website: " + ws + ":" + sp)
 	c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	try:
 		try:
 			wh = socket.gethostbyname(ws)
+			print("[*] Streaming Website: " + wh + ":" + sp)
 		except socket.gaierror:
 			print("404: Error Host.")
 			sys.exit()
 			
 		
-		c.connect((wh, 80))
+		c.connect((wh, sp))
 		
 		print("[!] Host: 200 | " + wh)
 		
