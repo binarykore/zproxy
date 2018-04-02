@@ -60,6 +60,9 @@ def proxy_server(webserver, port, x, addr, data):
 		print("Host: 200 - " + wh)
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		s.connect((wh, sp))
+		
+		print("Host : Status = 200")
+		
 		try:
 			s.send("GET / HTTP/1.1\r\n\r\n")
 			print(s.recv(4096))
