@@ -57,7 +57,7 @@ def proxy_server(webserver, port, x, addr, data):
 		x.send(data)
 		while(1):
 			if(len(x.recv(1024)) > 0 or len(s.recv(1024)) > 0):
-				dar = float(len(conn.recv(1024)))
+				dar = float(len(x.recv(1024)))
 				dar = float(dar / 1024)
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
@@ -65,9 +65,9 @@ def proxy_server(webserver, port, x, addr, data):
 				continue
 		s.close()
 
-		conn.close()
+		x.close()
 	except socket.error, (value, message):
 		s.close()
-		conn.close()
+		x.close()
 		sys.exit(1)
 start(lp)
