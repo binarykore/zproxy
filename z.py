@@ -51,7 +51,6 @@ def proxy_server(sw, f, g, a):
 	sp = sw.split(":")[1]
 	#Carrier Return, Line Feed
 	c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	c.connect((wh, sp))
 	
 	if(sp == 443):
 		sp = 80
@@ -59,6 +58,8 @@ def proxy_server(sw, f, g, a):
 		sp = sp
 	else:
 		pass
+	
+	c.connect((wh, sp))
 	
 	try:
 		wh = socket.gethostbyname(ws)
