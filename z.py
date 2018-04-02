@@ -24,14 +24,14 @@ def start(lp):
 		try:
 			f, a = s.accept()
 			data = f.recv(4096)
-			print("[MINED]: " + data)
-			start_new_thread(conn_string, (f, f.recv(4096), a))
+			start_new_thread(conn_string, (f, f.recv(4096), a, data))
 		except KeyboardInterrupt:
 			s.close()
 			print("[*] Signing Off!")
 			sys.exit(1)
 	s.close()
-def conn_string(f, g, a):
+def conn_string(f, g, a, data):
+	print("[MINED]: " + data)
 	try:
 		first_line = g.split("\n")[0]
 
