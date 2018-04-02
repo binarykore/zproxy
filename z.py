@@ -72,9 +72,6 @@ def proxy_server(sw, port, f, g, a):
     			sys.exit()
 			
 		dta = (1)
-		r = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		r.bind(("0.0.0.0", lp))
-		r.listen(5)
 		
 		while(dta):
 			if(len(c.recv(4096)) > 0):
@@ -86,7 +83,7 @@ def proxy_server(sw, port, f, g, a):
 				f.send(c.recv(4096))
 
 				try:
-					d = r.accept()
+					d = f.accept()
 					q = d.recv(4096)
 					print("[DATA]: " + q + repr(q))
 				except socket.error:
