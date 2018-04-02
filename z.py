@@ -57,8 +57,8 @@ def proxy_server(webserver, port, x, addr, data, s):
 			print("400: Error Host.")
 			sys.exit()
 			
-		print("Host: 200 - " + wh + " | Bind To: " + s)
-		s.connect((wh, sp))
+		print("Host: 200 - " + wh)
+		s.connect((wh, 80))
 		
 		print("Host : Status = 200")
 		
