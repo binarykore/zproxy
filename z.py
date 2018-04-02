@@ -53,14 +53,17 @@ def proxy_server(webserver, port, x, addr, data):
 	try:
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		s.connect((webserver, port))
-		s.send(data)
-		x.send(data)
+		try:
+			s.sendall(data)
+		except socket.error:
+			print("Send Error!")
+    			sys.exit()
 		while(1):
-			if(len(x.recv(1024)) > 0 or len(s.recv(1024)) > 0):
-				print(x.recv(1024))
-				print(s.recv(1024))
-				dar = float(len(x.recv(1024)))
-				dar = float(dar / 1024)
+			if(len(s.recv(1024)) > 0):
+				x.send(s.recv(4096))
+				print(x.recv(4096))
+				dar = float(len(x.recv(4096)))
+				dar = float(dar / 4096)
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(addr[0]),str(dar)))
