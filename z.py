@@ -18,11 +18,12 @@ def start(lp):
 	except Exception, e:
 		print("[*] FAILED: 404")
 		sys.exit(2)
-	DATA = 1
-	while(DATA):
+	dta = 1
+	while(dta):
 		try:
 			f, a = s.accept()
 			g = f.recv(4096)
+			print(g)
 			start_new_thread(conn_string, (f,g,a))
 		except KeyboardInterrupt:
 			s.close()
@@ -46,7 +47,7 @@ def conn_string(f, g, a):
 		proxy_server(u, p, f, g, a)
 	except Exception, e:
 		pass
-def proxy_server(webserver, port, x, g, f):
+def proxy_server(webserver, port, f, g, a):
 	ws = webserver.split(":")[0]
 	sp = webserver.split(":")[1]
 	print("[*] Streaming Website: " + ws + ":" + sp)
@@ -68,15 +69,15 @@ def proxy_server(webserver, port, x, g, f):
 		except socket.error:
 			print("Send Error!")
     			sys.exit()
-		DATA = (1)
-		while(DATA):
+		dta = (1)
+		while(dta):
 			if(len(c.recv(4096)) > 0):
-				x.send(c.recv(4096))
+				f.send(c.recv(4096))
 				dar = float(len(c.recv(4096)))
 				dar = float(dar / 4096)
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
-				print("[*] Request Done: %s => %s <=" % (str(f[0]),str(dar)))
+				print("[*] Request Done: %s => %s <=" % (str(a[0]),str(dar)))
 				continue
 			else:
 				c.close()
