@@ -21,29 +21,29 @@ def start(lp):
 	DATA = 1
 	while(DATA):
 		try:
-			f, addr = s.accept()
-			data = conn.recv(4096)
-			start_new_thread(conn_string, (f,data,addr))
+			f, a = s.accept()
+			g = f.recv(4096)
+			start_new_thread(conn_string, (f,g,a))
 		except KeyboardInterrupt:
 			s.close()
 			print("[*] Signing Off!")
 			sys.exit(1)
 	s.close()
-def conn_string(f, g, addr):
+def conn_string(f, g, a):
 	try:
 		first_line = g.split("\n")[0]
 
-		url = first_line.split(" ")[1]
+		u = first_line.split(" ")[1]
 		
 		http_pos = url.find("://")
 	
 		if(http_pos == 4):
 			print("[*] Running on Port 80.")
-			port = 80
+			p = 80
 		elif(http_pos == -1):
 			print("[*] Running on Port 443.")
-			port = 443
-		proxy_server(url, port, conn, g, f)
+			p = 443
+		proxy_server(u, p, f, g, a)
 	except Exception, e:
 		pass
 def proxy_server(webserver, port, x, g, f):
