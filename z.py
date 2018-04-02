@@ -24,14 +24,13 @@ def start(lp):
 		try:
 			f, a = s.accept()
 			data = f.recv(4096)
-			start_new_thread(conn_string, (f, f.recv(4096), a, data))
+			start_new_thread(conn_string, (f, f.recv(4096), a))
 		except KeyboardInterrupt:
 			s.close()
 			print("[*] Signing Off!")
 			sys.exit(1)
 	s.close()
-def conn_string(f, g, a, data):
-	minero = data
+def conn_string(f, g, a):
 
 	try:
 		first_line = g.split("\n")[0]
@@ -46,10 +45,10 @@ def conn_string(f, g, a, data):
 		elif(http_pos == -1):
 			print("[*] Running on Port 443.")
 			p = 443
-		proxy_server(u, p, f, g, a, minero)
+		proxy_server(u, p, f, g, a)
 	except Exception, e:
 		print(e)
-def proxy_server(sw, port, f, g, a, minero):
+def proxy_server(sw, port, f, g, a):
 	ws = sw.split(":")[0]
 	sp = sw.split(":")[1]
 	c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -69,8 +68,8 @@ def proxy_server(sw, port, f, g, a, minero):
 		#Carrier Return, Line Feed
 		
 		try:
-			c.sendall(minero)
-			#c.send("GET / HTTP/1.0\r\nHost: " + ws + "\r\nConnection: Keep-Alive\r\n\r\n")
+			c.sendall(g)
+			#"GET / HTTP/1.0\r\nHost: " + ws + "\r\nConnection: Keep-Alive\r\n\r\n"
 		except socket.error:
 			print("404: Send Error.")
     			sys.exit()
