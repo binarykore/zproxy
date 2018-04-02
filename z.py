@@ -58,16 +58,15 @@ def proxy_server(sw, f, g, a):
 		sp = sp
 	else:
 		pass
-	
-	c.connect((wh, sp))
-	
+		
 	try:
 		wh = socket.gethostbyname(ws)
 		print("[*] Streaming Website: " + wh + ":" + sp)
 	except socket.gaierror:
 		print("404: Error Host.")
 		sys.exit()
-		
+	
+	c.connect((wh, sp))		
 	
 	try:
 		print("[!] Host: " + wh + " | CRLF!")
