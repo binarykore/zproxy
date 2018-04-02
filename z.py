@@ -61,10 +61,7 @@ def proxy_server(sw, port, f, g, a):
 		
 		ef = c.connect((wh, sp))
 		
-		if not ef:
-			pass
-		else:
-			print("[!] Host: 200 | " + wh)
+		print("[!] Host: 200 | " + wh)
 		
 		#Carrier Return, Line Feed
 		
