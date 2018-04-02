@@ -60,9 +60,7 @@ def proxy_server(webserver, port, x, addr, data, s):
 			
 		print("Host: 200 - " + wh)
 		c.connect((wh, 80))
-		
-		print("Host : Status = 200")
-		
+				
 		try:
 			c.send("GET / HTTP/1.1\r\n\r\n")
 		except socket.error:
@@ -79,7 +77,7 @@ def proxy_server(webserver, port, x, addr, data, s):
 				print("[*] Request Done: %s => %s <=" % (str(addr[0]),str(dar)))
 				continue
 		c.close()
-
+		print(x.recv(4096))
 		x.close()
 	except socket.error, (value, message):
 		s.close()
