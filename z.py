@@ -58,6 +58,7 @@ def proxy_server(webserver, port, x, addr, data):
 		while(1):
 			if(len(x.recv(1024)) > 0 or len(s.recv(1024)) > 0):
 				print(x.recv(1024))
+				print(s.recv(1024))
 				dar = float(len(x.recv(1024)))
 				dar = float(dar / 1024)
 				dar = "%.3s" % (str(dar))
