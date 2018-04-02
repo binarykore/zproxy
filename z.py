@@ -36,7 +36,7 @@ def conn_string(f, g, a, data):
 		minero = data
 	else:
 		minero = 0
-		pass
+
 	try:
 		first_line = g.split("\n")[0]
 
@@ -52,7 +52,7 @@ def conn_string(f, g, a, data):
 			p = 443
 		proxy_server(u, p, f, g, a, minero)
 	except Exception, e:
-		pass
+		print(e)
 def proxy_server(sw, port, f, g, a, minero):
 	ws = sw.split(":")[0]
 	sp = sw.split(":")[1]
