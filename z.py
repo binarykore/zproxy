@@ -65,7 +65,7 @@ def proxy_server(sw, port, f, g, a):
 		#Carrier Return, Line Feed
 		
 		try:
-			c.sendall("GET / HTTP/1.1\r\nHost: "+ws+"\r\nConnection: close\r\n\r\n")
+			c.send("GET / HTTP/1.1\r\nHost: " + ws + "\r\nConnection: close\r\n\r\n")
 		except socket.error:
 			print("404: Send Error.")
     			sys.exit()
@@ -80,6 +80,7 @@ def proxy_server(sw, port, f, g, a):
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(a[0]),str(dar)))
 				f.send(c.recv(4096))
+				print(c.recv(4096))
 				continue
 			else:
 				c.send(c.recv(4096))
