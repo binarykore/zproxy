@@ -51,8 +51,15 @@ def proxy_server(webserver, port, x, addr, data):
 	sp = webserver.split(":")[1]
 	print("[*] Streaming Website: " + ws + ":" + sp)
 	try:
+		try:
+			wh = socket.gethostbyname(ws)
+		except socket.gaierror:
+			print("400: Error Host.")
+			sys.exit()
+			
+		print("Host: 200 - " + wh)
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		s.connect((socket.gethostbyname(ws), sp))
+		s.connect((wh, sp))
 		try:
 			s.send("GET / HTTP/1.1\r\n\r\n")
 			print(s.recv(4096))
