@@ -63,9 +63,11 @@ def proxy_server(sw, port, f, g, a):
 		print("[!] Host: 200 - " + wh)
 		
 		c.connect((wh, 80))
-				
+		
+		sf = ("HTTP/1.0 200 OK\r\n" + g)
+		print(sf)
 		try:
-			c.sendall(g)
+			c.sendall(sf)
 			#Santized Filter
 		except socket.error:
 			print("Send Error!")
