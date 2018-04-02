@@ -59,7 +59,7 @@ def proxy_server(sw, port, f, g, a):
 			
 		print("[!] Host: 200 | " + wh)
 		
-		c.connect((wh, 80))
+		c.connect((wh, sp))
 		CRLF = ("\r\n\r\n")
 		
 		#Carrier Return, Line Feed
