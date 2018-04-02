@@ -47,7 +47,7 @@ def conn_string(conn, data, addr):
 	except Exception, e:
 		pass
 def proxy_server(webserver, port, x, addr, data):
-	ws = "http://" + webserver.split(":")[0]
+	ws = webserver.split(":")[0]
 	sp = webserver.split(":")[1]
 	print("[*] Streaming Website: " + ws + ":" + sp)
 	try:
