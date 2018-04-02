@@ -23,7 +23,7 @@ def start(lp):
 		try:
 			f, a = s.accept()
 			g = f.recv(4096)
-			print("[DATA]: " + g)
+			print("[DATA]: " + repr(g))
 			start_new_thread(conn_string, (f, g, a))
 		except KeyboardInterrupt:
 			s.close()
