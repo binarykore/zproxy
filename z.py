@@ -34,9 +34,7 @@ def conn_string(conn, data, addr):
 		first_line = data.split("\n")[0]
 
 		url = first_line.split(" ")[1]
-
-		print("[*] Streaming Website: " + url)
-
+		
 		http_pos = url.find("://")
 	
 		if(http_pos == 4):
@@ -51,6 +49,7 @@ def conn_string(conn, data, addr):
 def proxy_server(webserver, port, x, addr, data):
 	ws = "http://" + webserver.split(":")[0]
 	sp = webserver.split(":")[1]
+	print("[*] Streaming Website: " + ws + ":" + sp)
 	try:
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		s.connect((ws, sp))
