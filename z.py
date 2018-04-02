@@ -57,24 +57,23 @@ def proxy_server(sw, f, g, a):
 	else:
 		pass
 	
-	c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	try:
-		try:
-			wh = socket.gethostbyname(ws)
-			print("[*] Streaming Website: " + wh + ":" + sp)
-		except socket.gaierror:
-			print("404: Error Host.")
-			sys.exit()
-			
+		wh = socket.gethostbyname(ws)
+		print("[*] Streaming Website: " + wh + ":" + sp)
+	except socket.gaierror:
+		print("404: Error Host.")
+		sys.exit()
 		
+	c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	
+	try:
 		c.connect((wh, sp))
 		
 		print("[!] Host: " + wh)
 		
 		#Carrier Return, Line Feed
-		
-		try:
-			c.send("GET / HTTP/1.0\r\nHost: " + ws + "\r\nConnection: Keep-Alive\r\n\r\n")
+	try:
+		c.send("GET / HTTP/1.0\r\nHost: " + ws + "\r\nConnection: Keep-Alive\r\n\r\n")
 		except socket.error:
 			print("404: Send Error.")
     			sys.exit()
