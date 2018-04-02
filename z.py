@@ -50,7 +50,7 @@ def proxy_server(sw, port, f, g, a):
 	sp = sw.split(":")[1]
 	print("[*] Streaming Website: " + ws + ":" + sp)
 	c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	c = ssl.wrap_socket(s, keyfile=None, certfile=None, server_side=False, cert_reqs=ssl.CERT_NONE, ssl_version=ssl.PROTOCOL_SSLv23)
+	c = ssl.wrap_socket(c, keyfile=None, certfile=None, server_side=False, cert_reqs=ssl.CERT_NONE, ssl_version=ssl.PROTOCOL_SSLv23)
 	try:
 		try:
 			wh = socket.gethostbyname(ws)
@@ -79,15 +79,6 @@ def proxy_server(sw, port, f, g, a):
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(a[0]),str(dar)))
-				
-				if not(c.recv(4096)):
-					client, newaddr = f.accept()
-					print(newaddr)
-					q = client.recv(4096)
-					print("[DATA]: " + q + repr(q))
-					c.close()
-					break
-					
 				f.send(c.recv(4096))
 				continue
 			else:
