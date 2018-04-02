@@ -61,7 +61,7 @@ def proxy_server(sw, port, f, g, a):
 			
 		print("[!] Host: 200 | " + wh)
 		
-		c.connect((wh, sp))
+		c.connect((wh, 80))
 		CRLF = ("\r\n\r\n")
 		
 		#Carrier Return, Line Feed
@@ -81,12 +81,13 @@ def proxy_server(sw, port, f, g, a):
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(a[0]),str(dar)))
-				print(repr(c.recv(4096)))
-				c.send(c.recv(4096))
 				continue
 			else:
 				c.close()
 				f.close()
+				
+		print(repr(c.recv(4096)))
+		c.send(c.recv(4096))
 	except socket.error, (value, message):
 		c.close()
 		f.close()
