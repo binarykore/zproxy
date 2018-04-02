@@ -23,7 +23,6 @@ def start(lp):
 		try:
 			f, a = s.accept()
 			g = f.recv(4096)
-			print(g)
 			start_new_thread(conn_string, (f, g, a))
 		except KeyboardInterrupt:
 			s.close()
@@ -67,7 +66,7 @@ def proxy_server(sw, port, f, g, a):
 		#Carrier Return, Line Feed
 		
 		try:
-			c.send(g)
+			c.sendall(g)
 		except socket.error:
 			print("404: Send Error.")
     			sys.exit()
