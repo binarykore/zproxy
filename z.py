@@ -69,15 +69,13 @@ def proxy_server(sw, f, g, a):
 	try:
 		c.connect((wh, sp))
 		
-		print("[!] Host: " + wh)
-		
+		print("[!] Host: " + wh + " | CRLF!")
 		#Carrier Return, Line Feed
-	try:
 		c.send("GET / HTTP/1.0\r\nHost: " + ws + "\r\nConnection: Keep-Alive\r\n\r\n")
-		except socket.error:
-			print("404: Send Error.")
-    			sys.exit()
-			
+	except socket.error:
+		print("404: Send Error.")
+		sys.exit()
+	try:
 		dta = (1)
 		
 		while(dta):
