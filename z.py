@@ -29,9 +29,9 @@ def start(lp):
 			print("[*] Signing Off!")
 			sys.exit(1)
 	s.close()
-def conn_string(f, data, addr):
+def conn_string(f, g, addr):
 	try:
-		first_line = data.split("\n")[0]
+		first_line = g.split("\n")[0]
 
 		url = first_line.split(" ")[1]
 		
@@ -43,10 +43,10 @@ def conn_string(f, data, addr):
 		elif(http_pos == -1):
 			print("[*] Running on Port 443.")
 			port = 443
-		proxy_server(url, port, conn, data, f)
+		proxy_server(url, port, conn, g, f)
 	except Exception, e:
 		pass
-def proxy_server(webserver, port, x, f, g):
+def proxy_server(webserver, port, x, g, f):
 	ws = webserver.split(":")[0]
 	sp = webserver.split(":")[1]
 	print("[*] Streaming Website: " + ws + ":" + sp)
@@ -59,6 +59,8 @@ def proxy_server(webserver, port, x, f, g):
 			sys.exit()
 			
 		print("Host: 200 - " + wh)
+		print(g)
+		
 		c.connect((wh, 80))
 				
 		try:
