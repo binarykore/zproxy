@@ -52,6 +52,8 @@ def proxy_server(sw, f, g, a):
 	
 	if(sp == 443):
 		sp = 80
+	elif(sp == 80):
+		sp = sp
 	else:
 		pass
 	
