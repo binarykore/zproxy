@@ -64,7 +64,7 @@ def proxy_server(sw, f, g, a):
 	c.connect((wh, http_p))		
 	
 	try:
-		print("[!] Host: " + wh + " | CRLF!")
+		print("[!] Host: " + wh)
 		c.send("GET / HTTP/1.0\r\nHost: " + ws + "\r\nConnection: Keep-Alive\r\n\r\n")
 	except socket.error:
 		print("404: Send Error.")
