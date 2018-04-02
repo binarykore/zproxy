@@ -37,7 +37,7 @@ def conn_string(f, g, a):
 		u = first_line.split(" ")[1]
 		
 		http_pos = u.find("://")
-		print("[!] " + u + " Deployed!")
+		print("[!] " + u + " accessible.")
 	
 		if(http_pos == 4):
 			print("[*] Running on Port 80.")
@@ -62,7 +62,7 @@ def proxy_server(sw, port, f, g, a):
 			
 		print("[!] Host: 200 - " + wh)
 		
-		c.connect((wh, 80))
+		c.connect((wh, sp))
 		
 		sf = ("GET / HTTP/1.1\r\nHost: " + wh + ":" + sp + " \r\nConnection: Keep-Alive\r\n\r\n")
 		print(sf)
