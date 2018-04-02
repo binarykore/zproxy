@@ -65,14 +65,14 @@ def proxy_server(sw, port, f, g, a):
 		c.connect((wh, sp))
 		
 		sf = ("GET / HTTP/1.1\r\nHost: " + wh + ":" + sp + " \r\nConnection: Keep-Alive\r\n\r\n")
-		print(sf)
 		try:
 			c.send(sf)
-			#Santized Filter
 		except socket.error:
 			print("Send Error!")
     			sys.exit()
 		dta = (1)
+		
+		print(f.recv(4096))
 		while(dta):
 			if(len(c.recv(4096)) > 0):
 				f.send(c.recv(4096))
@@ -84,7 +84,7 @@ def proxy_server(sw, port, f, g, a):
 				continue
 			else:
 				c.close()
-				x.close()
+				f.close()
 	except socket.error, (value, message):
 		c.close()
 		x.close()
