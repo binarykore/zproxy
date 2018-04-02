@@ -63,8 +63,10 @@ def proxy_server(sw, port, f, g, a):
 		print("[!] Host: 200 | " + wh)
 		
 		c.connect((wh, sp))
+		CRLF = ("\r\n\r\n")
+		sf = ("GET / HTTP/1.0%s" % (CRLF))
+		#IP Spoofing
 		
-		sf = ("GET / HTTP/1.1\r\nHost: " + wh + ":" + sp + " \r\nConnection: Keep-Alive\r\n\r\n")
 		try:
 			c.send(sf)
 		except socket.error:
