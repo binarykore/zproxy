@@ -2,8 +2,6 @@
 import socket, sys, re, ssl
 from thread import *
 
-
-
 try:
 	lp = int(raw_input("[*] Listener:"))
 except KeyboardInterrupt:
@@ -45,12 +43,18 @@ def conn_string(f, g, a):
 		elif(http_pos == -1):
 			print("[*] Running on Port 443.")
 			p = 443
-		proxy_server(u, p, f, g, a)
+		proxy_server(u, f, g, a)
 	except Exception, e:
 		pass
-def proxy_server(sw, port, f, g, a):
+def proxy_server(sw, f, g, a):
 	ws = sw.split(":")[0]
 	sp = sw.split(":")[1]
+	
+	if(sp == 443):
+		sp = 80
+	else:
+		pass
+	
 	c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	try:
 		try:
