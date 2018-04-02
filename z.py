@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-import socket, sys, threading
+import socket, sys, threading, re
 from thread import *
 
 
@@ -64,14 +64,14 @@ def proxy_server(sw, port, f, g, a):
 		
 		c.connect((wh, sp))
 		CRLF = ("\r\n\r\n")
-		sf = ("GET / HTTP/1.0%s" % (CRLF))
-		#IP Spoofing
 		
 		try:
-			c.send(sf)
+			#IP Spoofing
+			c.send("GET / HTTP/1.0%s" % (CRLF))
 		except socket.error:
 			print("404: Send Error.")
     			sys.exit()
+			
 		dta = (1)
 		
 		while(dta):
@@ -81,7 +81,8 @@ def proxy_server(sw, port, f, g, a):
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(a[0]),str(dar)))
-				f.send(c.recv(4096))
+				print(repr(c.recv(4096)))
+				c.send(c.recv(4096))
 				continue
 			else:
 				c.close()
