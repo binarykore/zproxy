@@ -49,10 +49,11 @@ def conn_string(conn, data, addr):
 	except Exception, e:
 		pass
 def proxy_server(webserver, port, x, addr, data):
-	webserver = webserver.split(":")[0]
+	ws = "http://" + webserver.split(":")[0]
+	sp = webserver.split(":")[1]
 	try:
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		s.connect((webserver, port))
+		s.connect((ws, sp))
 		try:
 			s.sendall(data)
 			print(len(s.recv(4096)))
