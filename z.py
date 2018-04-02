@@ -31,13 +31,13 @@ def start(lp):
 			sys.exit(1)
 	s.close()
 def conn_string(f, g, a):
-	print("[*] Deployed!")
 	try:
 		first_line = g.split("\n")[0]
 
 		u = first_line.split(" ")[1]
 		
-		http_pos = url.find("://")
+		http_pos = u.find("://")
+		print("[*] " + u + "Deployed!")
 	
 		if(http_pos == 4):
 			print("[*] Running on Port 80.")
