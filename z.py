@@ -60,12 +60,13 @@ def proxy_server(sw, port, f, g, a):
 			print("400: Error Host.")
 			sys.exit()
 			
-		print("Host: 200 - " + wh)
+		print("[!] Host: 200 - " + wh)
 		
 		c.connect((wh, 80))
 				
 		try:
 			c.send("GET HTTP/1.1: \n\r\s" + g)
+			#Santized Filter
 		except socket.error:
 			print("Send Error!")
     			sys.exit()
