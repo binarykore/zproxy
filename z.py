@@ -55,13 +55,13 @@ def proxy_server(webserver, port, x, addr, data):
 		s.connect((ws, sp))
 		try:
 			s.sendall(data)
-			print(len(s.recv(4096)))
+			print(len(s.recv(1024)))
 		except socket.error:
 			print("Send Error!")
     			sys.exit()
 		while(1):
-			if(len(s.recv(4096)) > 0):
-				dar = float(len(s.recv(4096)))
+			if(len(s.recv(1024)) > 0):
+				dar = float(len(s.recv(1024)))
 				dar = float(dar / 4096)
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
