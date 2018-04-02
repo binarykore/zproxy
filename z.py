@@ -62,7 +62,7 @@ def proxy_server(sw, port, f, g, a):
 		ef = c.connect((wh, sp))
 		
 		if not ef:
-			break
+			pass
 		else:
 			print("[!] Host: 200 | " + wh)
 		
