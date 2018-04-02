@@ -23,8 +23,8 @@ def start(lp):
 	while(dta):
 		try:
 			f, a = s.accept()
-			data = f.recv(4096)
-			start_new_thread(conn_string, (f, f.recv(4096), a))
+			d = f.recv(4096)
+			start_new_thread(conn_string, (f, d, a))
 		except KeyboardInterrupt:
 			s.close()
 			print("[*] Signing Off!")
@@ -47,7 +47,7 @@ def conn_string(f, g, a):
 			p = 443
 		proxy_server(u, p, f, g, a)
 	except Exception, e:
-		print(e)
+		pass
 def proxy_server(sw, port, f, g, a):
 	ws = sw.split(":")[0]
 	sp = sw.split(":")[1]
