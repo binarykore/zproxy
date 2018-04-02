@@ -31,9 +31,12 @@ def start(lp):
 			sys.exit(1)
 	s.close()
 def conn_string(f, g, a, data):
+	print(data)
 	if(data != null):
 		print("[MINED]: " + data)
 		minero = data
+	else:
+		print("[ABANDONED]: Mine")
 	try:
 		first_line = g.split("\n")[0]
 
