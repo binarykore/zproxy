@@ -37,7 +37,7 @@ def conn_string(f, g, a):
 		u = first_line.split(" ")[1]
 		
 		http_pos = u.find("://")
-		print("[*] " + u + "Deployed!")
+		print("[!] " + u + " Deployed!")
 	
 		if(http_pos == 4):
 			print("[*] Running on Port 80.")
