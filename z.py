@@ -1,8 +1,8 @@
 #! /usr/bin/env python
-import socket, sys, threading, re, ssl
+import socket, sys, re, ssl
 from sys import *
 from socket import *
-from threading import *
+from thread import *
 from ssl import *
 from re import *
 
