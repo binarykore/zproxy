@@ -64,7 +64,7 @@ def proxy_server(sw, port, f, g, a):
 		
 		c.connect((wh, 80))
 		
-		sf = ("GET HTTP/1.1 200 OK\r\n" + wh + ":" + sp)
+		sf = ("GET / HTTP/1.1\r\nHost: " + wh + ":" + sp + " \r\nConnection: close\r\n\r\n")
 		print(sf)
 		try:
 			c.send(sf)
