@@ -54,7 +54,7 @@ def proxy_server(webserver, port, x, addr, data):
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		s.connect((socket.gethostbyname(ws), sp))
 		try:
-			s.sendall("GET / HTTP/1.1\r\n\r\n")
+			s.send("GET / HTTP/1.1\r\n\r\n")
 			print(s.recv(4096))
 		except socket.error:
 			print("Send Error!")
