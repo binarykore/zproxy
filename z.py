@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-import socket, sys
+import socket, sys, threading
 from thread import *
 
 
@@ -50,6 +50,7 @@ def proxy_server(webserver, port, x, addr, data, s):
 	ws = webserver.split(":")[0]
 	sp = webserver.split(":")[1]
 	print("[*] Streaming Website: " + ws + ":" + sp)
+	c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	try:
 		try:
 			wh = socket.gethostbyname(ws)
@@ -58,27 +59,26 @@ def proxy_server(webserver, port, x, addr, data, s):
 			sys.exit()
 			
 		print("Host: 200 - " + wh)
-		s.connect((wh, 80))
+		c.connect((wh, 80))
 		
 		print("Host : Status = 200")
 		
 		try:
-			s.send("GET / HTTP/1.1\r\n\r\n")
-			print(s.recv(4096))
+			c.send("GET / HTTP/1.1\r\n\r\n")
 		except socket.error:
 			print("Send Error!")
     			sys.exit()
-		while(1):
-			if(len(s.recv(4096)) > 0):
-				dar = float(len(s.recv(4096)))
+		print(c.recv(4096))
+		DATA = (1)
+		while(DATA):
+			if(len(c.recv(4096)) > 0):
+				dar = float(len(c.recv(4096)))
 				dar = float(dar / 4096)
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(addr[0]),str(dar)))
-				x.send(s.recv(4096))
-				print(x.recv(4096))
 				continue
-		s.close()
+		c.close()
 
 		x.close()
 	except socket.error, (value, message):
