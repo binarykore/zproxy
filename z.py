@@ -24,13 +24,14 @@ def start(lp):
 			f, a = s.accept()
 			g = f.recv(4096)
 			print(g)
-			start_new_thread(conn_string, (f,g,a))
+			start_new_thread(conn_string, (f, g, a))
 		except KeyboardInterrupt:
 			s.close()
 			print("[*] Signing Off!")
 			sys.exit(1)
 	s.close()
 def conn_string(f, g, a):
+	print("[*] Deployed!")
 	try:
 		first_line = g.split("\n")[0]
 
