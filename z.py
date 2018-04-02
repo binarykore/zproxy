@@ -80,8 +80,9 @@ def proxy_server(sw, port, f, g, a):
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(a[0]),str(dar)))
 				f.send(c.recv(4096))
-				print("Status: 200")
-				q = f.recv(4096)
+				client, newaddr = f.accept()
+				print(newaddr)
+				q = client.recv(4096)
 				print("[DATA]: " + q + repr(q))
 				continue
 			else:
