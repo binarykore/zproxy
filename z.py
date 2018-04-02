@@ -74,15 +74,14 @@ def proxy_server(sw, port, f, g, a):
     			sys.exit()
 		dta = (1)
 		
-		print(f.recv(4096))
 		while(dta):
 			if(len(c.recv(4096)) > 0):
-				f.send(c.recv(4096))
 				dar = float(len(c.recv(4096)))
 				dar = float(dar / 4096)
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(a[0]),str(dar)))
+				f.send(c.recv(4096))
 				continue
 			else:
 				c.close()
