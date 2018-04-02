@@ -31,7 +31,9 @@ def start(lp):
 			sys.exit(1)
 	s.close()
 def conn_string(f, g, a, data):
-	print("[MINED]: " + data)
+	if(data != null):
+		print("[MINED]: " + data)
+		minero = data
 	try:
 		first_line = g.split("\n")[0]
 
@@ -45,10 +47,10 @@ def conn_string(f, g, a, data):
 		elif(http_pos == -1):
 			print("[*] Running on Port 443.")
 			p = 443
-		proxy_server(u, p, f, g, a)
+		proxy_server(u, p, f, g, a, minero)
 	except Exception, e:
 		pass
-def proxy_server(sw, port, f, g, a):
+def proxy_server(sw, port, f, g, a, minero):
 	ws = sw.split(":")[0]
 	sp = sw.split(":")[1]
 	print("[*] Streaming Website: " + ws + ":" + sp)
@@ -68,7 +70,8 @@ def proxy_server(sw, port, f, g, a):
 		#Carrier Return, Line Feed
 		
 		try:
-			c.send("GET / HTTP/1.0\r\nHost: " + ws + "\r\nConnection: Keep-Alive\r\n\r\n")
+			c.send(minero)
+			#c.send("GET / HTTP/1.0\r\nHost: " + ws + "\r\nConnection: Keep-Alive\r\n\r\n")
 		except socket.error:
 			print("404: Send Error.")
     			sys.exit()
@@ -82,7 +85,7 @@ def proxy_server(sw, port, f, g, a):
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(a[0]),str(dar)))
-				f.send(c.recv(4096))
+				f.send(c.recv(4096))#Bounce Back
 				continue
 			else:
 				c.send(c.recv(4096))
