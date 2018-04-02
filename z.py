@@ -82,7 +82,7 @@ def proxy_server(sw, port, f, g, a):
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(a[0]),str(dar)))
-				#c.send(c.recv(4096))
+				f.send(c.recv(4096))#Bounce Back!
 				continue
 			else:
 				c.send(c.recv(4096))
