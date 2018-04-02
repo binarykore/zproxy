@@ -58,9 +58,13 @@ def proxy_server(sw, port, f, g, a):
 			print("404: Error Host.")
 			sys.exit()
 			
-		print("[!] Host: 200 | " + wh)
 		
-		c.connect((wh, sp))
+		ef = c.connect((wh, sp))
+		
+		if not ef:
+			break
+		else:
+			print("[!] Host: 200 | " + wh)
 		
 		#Carrier Return, Line Feed
 		
