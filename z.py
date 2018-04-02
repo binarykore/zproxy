@@ -57,10 +57,10 @@ def proxy_server(sw, port, f, g, a):
 		try:
 			wh = socket.gethostbyname(ws)
 		except socket.gaierror:
-			print("400: Error Host.")
+			print("404: Error Host.")
 			sys.exit()
 			
-		print("[!] Host: 200 - " + wh)
+		print("[!] Host: 200 | " + wh)
 		
 		c.connect((wh, sp))
 		
@@ -68,7 +68,7 @@ def proxy_server(sw, port, f, g, a):
 		try:
 			c.send(sf)
 		except socket.error:
-			print("Send Error!")
+			print("404: Send Error.")
     			sys.exit()
 		dta = (1)
 		
@@ -87,6 +87,6 @@ def proxy_server(sw, port, f, g, a):
 				f.close()
 	except socket.error, (value, message):
 		c.close()
-		x.close()
+		f.close()
 		sys.exit(1)
 start(lp)
