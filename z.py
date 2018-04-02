@@ -86,11 +86,9 @@ def proxy_server(sw, port, f, g, a):
 				f.send(c.recv(4096))
 
 				try:
-					f.timeout(2)
 					d = r.accept()
 					q = d.recv(4096)
-					f.timeout(4)
-					print("[DATA]: " + q)
+					print("[DATA]: " + q + repr(q))
 				except socket.error:
 					break
 				continue
