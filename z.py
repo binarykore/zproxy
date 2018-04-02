@@ -81,12 +81,11 @@ def proxy_server(sw, port, f, g, a):
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(a[0]),str(dar)))
+				print("[DATA]: " + c.recv(4096))
 				continue
 			else:
 				c.send(c.recv(4096))
 				
-		data_response = (c.recv(4096))
-		print(repr(data_response))
 		c.close()
 		f.close()
 	except socket.error, (value, message):
