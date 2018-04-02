@@ -46,7 +46,7 @@ def conn_string(conn, data, addr):
 		proxy_server(url, port, conn, addr, data)
 	except Exception, e:
 		pass
-def proxy_server(webserver, port, x, addr, data):
+def proxy_server(webserver, port, x, addr, g):
 	ws = webserver.split(":")[0]
 	sp = webserver.split(":")[1]
 	print("[*] Streaming Website: " + ws + ":" + sp)
@@ -62,7 +62,7 @@ def proxy_server(webserver, port, x, addr, data):
 		c.connect((wh, 80))
 				
 		try:
-			c.send("GET / HTTP/1.1\r\n\r\n")
+			c.send(g)
 		except socket.error:
 			print("Send Error!")
     			sys.exit()
