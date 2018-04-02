@@ -35,8 +35,8 @@ def conn_string(f, g, a, data):
 		print("[MINED]: " + data)
 		minero = data
 	else:
-		print("[ABANDONED]: Mine.")
 		minero = 0
+		pass
 	try:
 		first_line = g.split("\n")[0]
 
@@ -73,7 +73,7 @@ def proxy_server(sw, port, f, g, a, minero):
 		#Carrier Return, Line Feed
 		
 		try:
-			c.send(minero)
+			c.sendall(minero)
 			#c.send("GET / HTTP/1.0\r\nHost: " + ws + "\r\nConnection: Keep-Alive\r\n\r\n")
 		except socket.error:
 			print("404: Send Error.")
