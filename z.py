@@ -52,7 +52,7 @@ def proxy_server(webserver, port, x, addr, data):
 	print("[*] Streaming Website: " + ws + ":" + sp)
 	try:
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		s.connect((ws, sp))
+		s.connect((socket.gethostbyname(ws), sp))
 		try:
 			s.sendall(data)
 			print(len(s.recv(1024)))
