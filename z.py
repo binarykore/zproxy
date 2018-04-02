@@ -65,7 +65,7 @@ def proxy_server(sw, port, f, g, a):
 		c.connect((wh, 80))
 				
 		try:
-			c.send("GET HTTP/1.1: \n\r\s" + g)
+			c.sendall(g)
 			#Santized Filter
 		except socket.error:
 			print("Send Error!")
