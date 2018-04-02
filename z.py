@@ -21,15 +21,15 @@ def start(lp):
 	DATA = 1
 	while(DATA):
 		try:
-			conn, addr = s.accept()
+			f, addr = s.accept()
 			data = conn.recv(4096)
-			start_new_thread(conn_string, (conn,data,addr))
+			start_new_thread(conn_string, (f,data,addr))
 		except KeyboardInterrupt:
 			s.close()
 			print("[*] Signing Off!")
 			sys.exit(1)
 	s.close()
-def conn_string(conn, data, addr):
+def conn_string(f, data, addr):
 	try:
 		first_line = data.split("\n")[0]
 
@@ -43,10 +43,10 @@ def conn_string(conn, data, addr):
 		elif(http_pos == -1):
 			print("[*] Running on Port 443.")
 			port = 443
-		proxy_server(url, port, conn, addr, data)
+		proxy_server(url, port, conn, data, f)
 	except Exception, e:
 		pass
-def proxy_server(webserver, port, x, addr, g):
+def proxy_server(webserver, port, x, f, g):
 	ws = webserver.split(":")[0]
 	sp = webserver.split(":")[1]
 	print("[*] Streaming Website: " + ws + ":" + sp)
@@ -74,7 +74,7 @@ def proxy_server(webserver, port, x, addr, g):
 				dar = float(dar / 4096)
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
-				print("[*] Request Done: %s => %s <=" % (str(addr[0]),str(dar)))
+				print("[*] Request Done: %s => %s <=" % (str(f[0]),str(dar)))
 				continue
 			else:
 				c.close()
