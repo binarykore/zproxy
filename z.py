@@ -59,14 +59,14 @@ def proxy_server(sw, port, f, g, a):
 			sys.exit()
 			
 		
-		ef = c.connect((wh, sp))
+		c.connect((wh, sp))
 		
 		print("[!] Host: 200 | " + wh)
 		
 		#Carrier Return, Line Feed
 		
 		try:
-			c.send("GET / HTTP/1.1\r\nHost: " + ws + "\r\nConnection: close\r\n\r\n")
+			c.send("GET / HTTP/1.1\r\nHost: " + wh + "\r\nConnection: close\r\n\r\n")
 		except socket.error:
 			print("404: Send Error.")
     			sys.exit()
