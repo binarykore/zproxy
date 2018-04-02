@@ -1,10 +1,8 @@
 #! /usr/bin/env python
-import socket, sys, re, ssl
-from sys import *
-from socket import *
+import socket, thread, sys, re, ssl
 from thread import *
 from ssl import *
-from re import *
+
 
 
 try:
