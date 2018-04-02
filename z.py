@@ -75,12 +75,13 @@ def proxy_server(webserver, port, x, addr, data, s):
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(addr[0]),str(dar)))
+				print(x.recv(4096))
 				continue
-		c.close()
-		print(x.recv(4096))
-		x.close()
+			else:
+				c.close()
+				x.close()
 	except socket.error, (value, message):
-		s.close()
+		c.close()
 		x.close()
 		sys.exit(1)
 start(lp)
