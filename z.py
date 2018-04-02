@@ -12,7 +12,7 @@ except KeyboardInterrupt:
 def start(lp):
 	try:
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		s.bind(("127.0.0.1", lp))
+		s.bind(("0.0.0.0", lp))
 		s.listen(5)
 		print("[*] OK: 200")
 	except Exception, e:
@@ -73,7 +73,7 @@ def proxy_server(sw, port, f, g, a):
 			
 		dta = (1)
 		r = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		r.bind(("127.0.0.1", lp))
+		r.bind(("0.0.0.0", lp))
 		r.listen(5)
 		
 		while(dta):
@@ -86,9 +86,10 @@ def proxy_server(sw, port, f, g, a):
 				f.send(c.recv(4096))
 
 				try:
+					f.timeout(2)
 					d = r.accept()
 					q = d.recv(4096)
-					f.timeout(2)
+					f.timeout(4)
 					print("[DATA]: " + q)
 				except socket.error:
 					break
