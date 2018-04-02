@@ -52,12 +52,7 @@ def proxy_server(sw, f, g, a):
 	#Carrier Return, Line Feed
 	c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	
-	if(sp == 443):
-		sp = 80
-	elif(sp == 80):
-		sp = sp
-	else:
-		pass
+	http_p = 80
 		
 	try:
 		wh = socket.gethostbyname(ws)
@@ -66,7 +61,7 @@ def proxy_server(sw, f, g, a):
 		print("404: Error Host.")
 		sys.exit()
 	
-	c.connect((wh, sp))		
+	c.connect((wh, http_p))		
 	
 	try:
 		print("[!] Host: " + wh + " | CRLF!")
