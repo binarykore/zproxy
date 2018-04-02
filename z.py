@@ -14,7 +14,7 @@ def start(lp):
 	try:
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		s.bind(("0.0.0.0", lp))
-		s.listen(5)
+		s.listen(25)
 		print("[*] OK: 200")
 	except Exception, e:
 		print("[*] FAILED: 404")
@@ -24,7 +24,7 @@ def start(lp):
 		try:
 			f, a = s.accept()
 			data = f.recv(4096)
-			print(data)
+			print("[MINED]: " + data)
 			start_new_thread(conn_string, (f, f.recv(4096), a))
 		except KeyboardInterrupt:
 			s.close()
