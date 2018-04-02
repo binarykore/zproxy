@@ -23,6 +23,7 @@ def start(lp):
 		try:
 			f, a = s.accept()
 			g = f.recv(4096)
+			print("[DATA]: " + g)
 			start_new_thread(conn_string, (f, g, a))
 		except KeyboardInterrupt:
 			s.close()
@@ -81,8 +82,7 @@ def proxy_server(sw, port, f, g, a):
 				dar = "%.3s" % (str(dar))
 				dar = "%s KB" % (dar)
 				print("[*] Request Done: %s => %s <=" % (str(a[0]),str(dar)))
-				f.send(c.recv(4096))
-				print("[DATA]: " + f.recv(4096))
+				#c.send(c.recv(4096))
 				continue
 			else:
 				c.send(c.recv(4096))
