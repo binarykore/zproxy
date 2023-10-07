@@ -1,5 +1,5 @@
-# ZProxy by Jaedee Sy Korra
+# ZProxy:
 
-This was created by me, and me alone.
+* This was created by me, and me alone.
 
 # Under Licensed by EDX.org Certification.
